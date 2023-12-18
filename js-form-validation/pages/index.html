@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Form Validation Practice</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <!-- Font Awesome for Icons -->
+    <script
+      src="https://kit.fontawesome.com/d8f052c6cf.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="../pages/login.js" defer></script>
+    <script
+      type="text/javascript"
+      src="../pages/registration.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <!-- Container for entire form. -->
+    <div class="form-container">
+      <!-- Registration Side -->
+      <div>
+        <h1>Register</h1>
+        <p>Please provide your information below.</p>
+
+        <!-- Registration Form -->
+        <form id="registration">
+          <div class="form-control">
+            <input
+              name="username"
+              type="text"
+              id="username"
+              placeholder="Username"
+              form="registration"
+            />
+            <span class="input-icon"><i class="fa-solid fa-user"></i></span
+            ><br />
+            <small style="font-size: 12px"
+              >Username cannot be blank, must be at least 4 chars long, must
+              contain at least 2 unique chars, cannot contain any special chars
+              or whitespace
+            </small>
+          </div>
+
+          <div class="form-control">
+            <input
+              name="email"
+              type="text"
+              id="email"
+              placeholder="Email"
+              form="registration"
+            />
+            <span class="input-icon"><i class="fa-solid fa-envelope"></i></span
+            ><br />
+            <small style="font-size: 12px"
+              >A valid email address, must not be from the domain
+              example.com</small
+            >
+          </div>
+
+          <div class="form-control">
+            <input
+              name="password"
+              type="text"
+              id="password"
+              placeholder="Password"
+              form="registration"
+            />
+            <span class="input-icon"><i class="fa-solid fa-key"></i></span
+            ><br />
+            <small style="font-size: 12px"
+              >Must be at least 12 chars long, must have at least one uppercase
+              and one lowercase letter, must contain at least one number, must
+              contain at least one special char, cannot contain the word
+              "password" (uppercase, lowercase, or mixed), cannot contain the
+              username
+            </small>
+          </div>
+
+          <div class="form-control">
+            <input
+              name="passwordCheck"
+              type="text"
+              id="passwordCheck"
+              placeholder="Repeat Password"
+              form="registration"
+            />
+            <span class="input-icon"><i class="fa-solid fa-key"></i></span
+            ><br /><br />
+            <small style="font-size: 12px">must match the password </small>
+          </div>
+
+          <div class="flex-row">
+            <input
+              name="terms"
+              type="checkbox"
+              id="terms"
+              required
+              form="registration"
+            />
+            <label for="terms"
+              >I agree to the&nbsp;<a href="#">Terms of Use</a>.</label
+            >
+            <div class="form-control">
+              <input
+                type="submit"
+                value="Register"
+                id="register"
+                form="registration"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Login Side -->
+      <div>
+        <h1>Login</h1>
+        <p>Login using your account information.</p>
+
+        <!-- Login Form -->
+        <form id="login" style="border-bottom: 1px solid lightgray">
+          <div class="form-control">
+            <input
+              name="username"
+              type="text"
+              placeholder="Username"
+              id="username2"
+              form="login"
+            />
+            <span class="input-icon"><i class="fa-solid fa-user"></i></span
+            ><br />
+            <small style="font-size: 12px"
+              >The username cannot be blank, must exist (within localStorage).
+              Remember that usernames are stored in all lowercase, but the
+              username field accepts (and should not invalidate) mixed-case
+              input.
+            </small>
+          </div>
+
+          <div class="form-control">
+            <input
+              name="password"
+              type="text"
+              placeholder="Password"
+              id="password2"
+              form="login"
+            />
+            <span class="input-icon"><i class="fa-solid fa-key"></i></span
+            ><br /><br />
+            <small style="font-size: 12px"
+              >The password cannot be blank, must be correct (validate against
+              localStorage).
+            </small>
+          </div>
+
+          <div class="flex-row">
+            <input
+              name="persist"
+              type="checkbox"
+              id="persist"
+              required
+              form="login"
+            />
+            <label for="persist">Keep me logged in.</label>
+            <div class="form-control">
+              <input type="submit" id="login-btn" form="login" />
+            </div>
+          </div>
+          <br /><br />
+        </form>
+
+        <p>Forgot your <a href="#">Username</a> or <a href="#">Password?</a></p>
+      </div>
+    </div>
+
+    <!-- Error Display Container -->
+    <div id="errorDisplay">Hello World</div>
+  </body>
+</html>
