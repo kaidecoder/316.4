@@ -10,12 +10,15 @@ let inputs = document.querySelectorAll("input");
 let small = document.querySelectorAll("small");
 console.log(inputs);
 
-let info = [];
+    
+    
 
 function validateInput() {
   //check username empty
+  
   if (username.value.trim() === "") {
     onError(username, "UserName cannot be empty");
+    
   } else {
     if (!isValidUsername(username.value.trim())) {
       onError(username, "Username is not valid");
@@ -79,40 +82,47 @@ function onSuccess(input, message) {
   // console.log(input.value);
   let parent = input.parentElement;
   let msgEl = parent.querySelector("small");
+
+  // Check if username is already in local storage
+  if (localStorage.getItem("username") === input.value.trim()) {
+    msgEl.style.visibility = "visible";
+    msgEl.innerHTML = "This username is already taken.";
+    parent.classList.add("error");
+    parent.classList.remove("success");
+    return; // Exit the function if the username is already taken
+  }
+
+
+
   msgEl.style.visibility = "visible";
-  msgEl.innerText = message;
+  msgEl.innerHTML = message;
   parent.classList.add("success");
   parent.classList.remove("error");
-  info.push(input.value);
-  localStorage.setItem("form info:", info);
+  
   small.forEach((item) => {
     if (item.textContent.includes("valid")) {
       errorDisplay.style.display = "block";
-      errorDisplay.innerText = "Successful submission";
+      errorDisplay.innerHTML = "Successful submission";
     }
+    localStorage.setItem(`${input.id}`, input.value);
     return item
   });
-  // inputs.forEach(input => {
-  //   if(item.textContent.includes("valid")){
-
-  //     input.reset()
-  //   }
-  // })
+  input.value = ""
+  errorDisplay.style.display = "none"
 }
 
 function onError(input, message) {
   let parent = input.parentElement;
   let msgEl = parent.querySelector("small");
   msgEl.style.visibility = "visible";
-  msgEl.innerText = message;
+  msgEl.innerHTML = message;
   parent.classList.add("error");
   parent.classList.remove("success");
 }
 
 function isValidUsername(username) {
-  return /^(?=\S)(?!.*[\s])(?!.*[^\w\s]).{4,}(?:(.).*?(?!\1)){2,}$/.test(
-    username,
-  );
+  
+  return  /^(?=\S)(?!.*[\s])(?!.*[^\w\s]).{4,}(?:(.).*?(?!\1)){2,}$/.test(username)
 }
 
 function isValidEmail(email) {
