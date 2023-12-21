@@ -1,7 +1,7 @@
 let username = document.getElementById("username");
 let email = document.getElementById("email");
 let form = document.querySelector("#register");
-form = document.querySelector("#login");
+let form2 = document.querySelector("#login");
 let password = document.getElementById("password");
 let cpassword = document.getElementById("passwordCheck");
 let formContainer = document.querySelector(".form-container");
@@ -52,48 +52,28 @@ function validateInput() {
   }
 }
 
-function validateLoginInput() {
-  console.log("inside login");
-  if (username2.value.trim() === "") {
-    onError(username2, "UserName cannot be empty");
-  } else {
-    if (!isValidUsername(username2.value.trim())) {
-      onError(username2, "Username is not valid");
-    } else {
-      onSuccess(username2, "username is valid");
-    }
-  }
-  if (password2.value.trim() === "") {
-    onError(password2, "Password cannot be empty");
-  } else {
-    if (!isValidPassword(password2.value.trim())) {
-      onError(password2, "Password is not valid");
-    } else {
-      onSuccess(password2, "Password is valid");
-    }
-  }
-}
 
-// document.querySelector("#register").addEventListener("click", (e) => {
-//   e.preventDefault();
-//   validateInput();
-// });
 
-let buttons = document.querySelectorAll("input[type='submit']");
-for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", (e) => {
-    // e.preventDefault()
-    console.log(buttons);
-    if (form.id === "register") {
-      console.log(form.id);
-      validateInput();
-    }
-    if (form.id === "login") {
-      console.log(form.id);
-      validateLoginInput();
-    }
-  });
-}
+document.querySelector("#register").addEventListener("click", (e) => {
+  e.preventDefault();
+  validateInput();
+});
+
+// let buttons = document.querySelectorAll("input[type='submit']");
+// for (let i = 0; i < buttons.length; i++) {
+//   buttons[i].addEventListener("click", (e) => {
+//     // e.preventDefault()
+//     console.log(buttons);
+//     if (form.id === "register") {
+//       console.log(form.id);
+//       validateInput();
+//     }
+//     if (form2.id === "login") {
+//       console.log(form2.id);
+//       validateLoginInput();
+//     }
+//   });
+// }
 
 function onSuccess(input, message) {
   // console.log(input.value);
@@ -152,3 +132,30 @@ function isValidCPassword(cpassword) {
     cpassword,
   );
 }
+
+form2.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validateLoginInput(inputs);
+  });
+
+  function validateLoginInput(inputs) {
+    console.log("inside login");
+    if (inputs[6].value.trim() === "") {
+      onError(inputs[6], "UserName cannot be empty");
+    } else {
+      if (!isValidUsername(username2.value.trim())) {
+        onError(inputs[6], "Username is not valid");
+      } else {
+        onSuccess(inputs[6], "username is valid");
+      }
+    }
+    if (inputs[7].value.trim() === "") {
+      onError(inputs[7], "Password cannot be empty");
+    } else {
+      if (!isValidPassword(password2.value.trim())) {
+        onError(inputs[7], "Password is not valid");
+      } else {
+        onSuccess(inputs[7], "Password is valid");
+      }
+    }
+  }  
