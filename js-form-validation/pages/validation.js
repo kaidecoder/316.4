@@ -2,14 +2,14 @@
  * ! Clean up and refactor the functions
  **/
 
-let usernameForm1 = document.getElementById("username");
-let emailForm1 = document.getElementById("email");
-let passwordForm1 = document.getElementById("password");
-let cpasswordForm1 = document.getElementById("passwordCheck");
-let errorDisplay = document.querySelector("#errorDisplay");
-let form = document.querySelector("#register");
-let form2 = document.querySelector("#login");
-let formContainer = document.querySelector(".form-container");
+let usernameForm1 = document.getElementById("username"),
+let emailForm1 = document.getElementById("email"),
+let passwordForm1 = document.getElementById("password"),
+let cpasswordForm1 = document.getElementById("passwordCheck"),
+let errorDisplay = document.querySelector("#errorDisplay"),
+let form = document.querySelector("#register"),
+let form2 = document.querySelector("#login"),
+let formContainer = document.querySelector(".form-container"),
 let inputFields = document.querySelectorAll("input");
 
 console.log(inputFields);

@@ -68,7 +68,7 @@ function onSuccess(input, message) {
     parent.classList.add("error");
     parent.classList.remove("success");
     return;
-    // Exit the function if the username is already taken
+    
   }
 
   msgEl.style.visibility = "visible";
