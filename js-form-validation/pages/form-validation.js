@@ -10,15 +10,11 @@ let inputs = document.querySelectorAll("input");
 let small = document.querySelectorAll("small");
 console.log(inputs);
 
-    
-    
-
 function validateInput() {
   //check username empty
-  
+
   if (username.value.trim() === "") {
     onError(username, "UserName cannot be empty");
-    
   } else {
     if (!isValidUsername(username.value.trim())) {
       onError(username, "Username is not valid");
@@ -55,28 +51,10 @@ function validateInput() {
   }
 }
 
-
-
 document.querySelector("#register").addEventListener("click", (e) => {
   e.preventDefault();
   validateInput();
 });
-
-// let buttons = document.querySelectorAll("input[type='submit']");
-// for (let i = 0; i < buttons.length; i++) {
-//   buttons[i].addEventListener("click", (e) => {
-//     // e.preventDefault()
-//     console.log(buttons);
-//     if (form.id === "register") {
-//       console.log(form.id);
-//       validateInput();
-//     }
-//     if (form2.id === "login") {
-//       console.log(form2.id);
-//       validateLoginInput();
-//     }
-//   });
-// }
 
 function onSuccess(input, message) {
   // console.log(input.value);
@@ -89,26 +67,25 @@ function onSuccess(input, message) {
     msgEl.innerHTML = "This username is already taken.";
     parent.classList.add("error");
     parent.classList.remove("success");
-    return; // Exit the function if the username is already taken
+    return;
+    // Exit the function if the username is already taken
   }
-
-
 
   msgEl.style.visibility = "visible";
   msgEl.innerHTML = message;
   parent.classList.add("success");
   parent.classList.remove("error");
-  
+
   small.forEach((item) => {
     if (item.textContent.includes("valid")) {
       errorDisplay.style.display = "block";
       errorDisplay.innerHTML = "Successful submission";
     }
-    localStorage.setItem(`${input.id}`, input.value);
-    return item
+    localStorage.setItem(`${input.id}`, input.value.toLowerCase());
+    return item;
   });
-  input.value = ""
-  errorDisplay.style.display = "none"
+  input.value = "";
+  errorDisplay.style.display = "none";
 }
 
 function onError(input, message) {
@@ -121,8 +98,9 @@ function onError(input, message) {
 }
 
 function isValidUsername(username) {
-  
-  return  /^(?=\S)(?!.*[\s])(?!.*[^\w\s]).{4,}(?:(.).*?(?!\1)){2,}$/.test(username)
+  return /^(?=\S)(?!.*[\s])(?!.*[^\w\s]).{4,}(?:(.).*?(?!\1)){2,}$/.test(
+    username,
+  );
 }
 
 function isValidEmail(email) {
@@ -144,28 +122,30 @@ function isValidCPassword(cpassword) {
 }
 
 form2.addEventListener("submit", (e) => {
-    e.preventDefault();
-    validateLoginInput(inputs);
-  });
+  e.preventDefault();
+  validateLoginInput(inputs);
+});
 
-  function validateLoginInput(inputs) {
-    console.log("inside login");
-    if (inputs[6].value.trim() === "") {
-      onError(inputs[6], "UserName cannot be empty");
+function validateLoginInput(inputs) {
+  console.log("inside login");
+  if (inputs[6].value.trim() === "") {
+    onError(inputs[6], "UserName cannot be empty");
+  } else {
+    if (!isValidUsername(username2.value.trim())) {
+      onError(inputs[6], "Username is not valid");
     } else {
-      if (!isValidUsername(username2.value.trim())) {
-        onError(inputs[6], "Username is not valid");
-      } else {
-        onSuccess(inputs[6], "username is valid");
-      }
+      onSuccess(inputs[6], "username equals username");
     }
-    if (inputs[7].value.trim() === "") {
-      onError(inputs[7], "Password cannot be empty");
+  }
+  if (inputs[7].value.trim() === "") {
+    onError(inputs[7], "Password cannot be empty");
+  } else {
+    let storedPassword = localStorage.getItem("password");
+
+    if (inputs[7].value.trim().toLowerCase() === storedPassword) {
+      onSuccess(inputs[7], "Password equals password");
     } else {
-      if (!isValidPassword(password2.value.trim())) {
-        onError(inputs[7], "Password is not valid");
-      } else {
-        onSuccess(inputs[7], "Password is valid");
-      }
+      onError(inputs[7], "Incorrect password");
     }
-  }  
+  }
+}

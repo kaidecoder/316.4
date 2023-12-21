@@ -24,9 +24,9 @@ document.querySelector("#register").addEventListener("click", (e) => {
   validateInput(cpasswordForm1, 3, `Confirm password cannot be empty`);
 });
 
-function validateInput(inputField, serial, message){
-  if(inputFields[serial].value.trim() === ""){
-    onError(serial, `${inputFields[serial].id} can't be blank`)
+function validateInput(inputField, serial, message) {
+  if (inputFields[serial].value.trim() === "") {
+    onError(serial, `${inputFields[serial].id} can't be blank`);
   }
 }
 
@@ -70,11 +70,6 @@ function validateInput(inputField, serial, message){
 //   }
 // }
 
-
-
-
-
-
 function onSuccess(input, message) {
   // console.log(input.value);
   let parent = input.parentElement;
@@ -90,7 +85,7 @@ function onSuccess(input, message) {
       errorDisplay.style.display = "block";
       errorDisplay.innerText = "Successful submission";
     }
-    return item
+    return item;
   });
   // inputs.forEach(input => {
   //   if(item.textContent.includes("valid")){
@@ -133,28 +128,28 @@ function isValidCPassword(cpassword) {
 }
 
 form2.addEventListener("submit", (e) => {
-    e.preventDefault();
-    validateLoginInput(inputs);
-  });
+  e.preventDefault();
+  validateLoginInput(inputs);
+});
 
-  function validateLoginInput(inputs) {
-    console.log("inside login");
-    if (inputs[6].value.trim() === "") {
-      onError(inputs[6], "UserName cannot be empty");
+function validateLoginInput(inputs) {
+  console.log("inside login");
+  if (inputs[6].value.trim() === "") {
+    onError(inputs[6], "UserName cannot be empty");
+  } else {
+    if (!isValidUsername(username2.value.trim())) {
+      onError(inputs[6], "Username is not valid");
     } else {
-      if (!isValidUsername(username2.value.trim())) {
-        onError(inputs[6], "Username is not valid");
-      } else {
-        onSuccess(inputs[6], "username is valid");
-      }
+      onSuccess(inputs[6], "username is valid");
     }
-    if (inputs[7].value.trim() === "") {
-      onError(inputs[7], "Password cannot be empty");
+  }
+  if (inputs[7].value.trim() === "") {
+    onError(inputs[7], "Password cannot be empty");
+  } else {
+    if (!isValidPassword(password2.value.trim())) {
+      onError(inputs[7], "Password is not valid");
     } else {
-      if (!isValidPassword(password2.value.trim())) {
-        onError(inputs[7], "Password is not valid");
-      } else {
-        onSuccess(inputs[7], "Password is valid");
-      }
+      onSuccess(inputs[7], "Password is valid");
     }
-  }  
+  }
+}
