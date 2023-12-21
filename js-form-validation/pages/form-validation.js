@@ -68,7 +68,6 @@ function onSuccess(input, message) {
     parent.classList.add("error");
     parent.classList.remove("success");
     return;
-    
   }
 
   msgEl.style.visibility = "visible";
